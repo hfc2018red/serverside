@@ -35,7 +35,7 @@ module.exports = (app, io) => {
         }
         thread.messages.push({
           body: req.body.body,
-          creator: req.uuid || undefined
+          creator: req.body.uuid || undefined
         });
 
         thread.save((err, thread) => {
