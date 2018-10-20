@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
 const Message = new mongoose.Schema({
   body: String,
-  creator: { type: Schema.Types.ObjectId, ref: 'User' }
+  creator: String,
+  location: String,
+  method: String,
+  contact: String
 });
 
 const ThreadSchema = mongoose.Schema({
