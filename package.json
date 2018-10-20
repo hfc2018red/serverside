@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start-server": "node index.js",
-    "heroku-prebuild": "react-scripts build",
+    "postinstall": "react-scripts build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
