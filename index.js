@@ -45,8 +45,8 @@ require('./routes')(app, io, auth);
 require('./auth')(app, auth);
 
 app.use(auth);
-// app.use(express.static('serverpublic'));
-// app.use(express.static('build'));
+app.use(express.static('serverpublic'));
+app.use(express.static('build'));
 
 db.on('error', () => {
   console.error(`Cannot connect to db ${process.env.MONGODB_URI}`);
