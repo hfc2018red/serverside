@@ -38,13 +38,17 @@ module.exports = (app, passport) => {
           creator: req.user ? req.user._id : undefined
         });
 
+        console.log('before save');
         thread.save((err, thread) => {
+          console.log('here');
           if (!err) {
             res.json(thread);
           } else {
             res.json({ messages: [] });
           }
         });
+      } else {
+        res.json({ msg: 'err' });
       }
     });
   });
