@@ -34,7 +34,8 @@ module.exports = (app, passport) => {
           thread.messages = [];
         }
         thread.messages.push({
-          body: req.body.body
+          body: req.body.body,
+          creator: req.user._id
         });
 
         thread.save(() => {
