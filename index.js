@@ -19,7 +19,6 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 const io = require('socket.io')
-io.set('origins', '*:*');
 
 app.use(cors({ credentials: false }));
 app.use('/admin', proxy(proxyOptions));
@@ -56,5 +55,5 @@ db.on('open', () => {
   app.listen(port, () => {
     console.log(`Listening on ${port}`);
   });
-  io.listen(app);
+  io.listen(app).set('origins', '*:*');
 });
