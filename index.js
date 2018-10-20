@@ -13,6 +13,10 @@ const db = mongoose.connection;
 // const User = new Schema({});
 // User.plugin(passportLocalMongoose);
 
+app.get('/', (req, res) => {
+  res.send('home');
+});
+
 require('./routes')(app);
 
 db.on('error', () => {
