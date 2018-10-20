@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "antd": "^3.10.1",
+    "cors": "^2.8.4",
     "express": "^4.16.4",
     "mongoose": "^5.3.4",
     "serve-static": "^1.13.2",

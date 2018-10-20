@@ -9,7 +9,7 @@ import openSocket from 'socket.io-client';
 const socket = openSocket('https://hfc2018red.herokuapp.com');
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       threads: [],
@@ -37,18 +37,9 @@ class App extends Component {
           threads: json
         }));
       })
-    window.fetch('/user')
-      .then(res => {
-        return res.json();
-      }).then(json => {
-        this.setState(Object.assign({}, this.state, {
-          user: json
-        }));
-      });
   }
   
   render() {
-    console.log(this.state.threads);
     return (
       <div>
         <Nav />
