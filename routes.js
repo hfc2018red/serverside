@@ -38,8 +38,12 @@ module.exports = (app, passport) => {
           creator: req.user ? req.user._id : undefined
         });
 
-        thread.save(() => {
-          res.json(thread);
+        thread.save((err, thread) => {
+          if (!err) {
+            res.json(thread);
+          } else {
+            res.json({ messages: [] });
+          }
         });
       }
     });
