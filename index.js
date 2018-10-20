@@ -7,6 +7,7 @@ const express = require('express');
 const port = process.env.PORT || 3000;
 
 const app = express();
+app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 

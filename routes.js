@@ -1,4 +1,5 @@
 const Thread = require('./models/Thread');
+const uuidv4 = require('uuid/v4');
 
 module.exports = app => {
   app.get('/threads', (req, res) => {
@@ -22,15 +23,24 @@ module.exports = app => {
   });
 
   app.post('/message', (req, res) => {
-    const thread = Thread.findOne({
+    Thread.findOne({
       uuid: req.body.threadId
-    });
-    thread.messages.push({
-      body: req.body.body
-    });
+    }, (err, thread) => {
+      if (!err) {
+        if (!thread) {
+          thread = new Thread({
+            uuid: uuidv4()
+          });
+          thread.messages = [];
+        }
+        thread.messages.push({
+          body: req.body.body
+        });
 
-    thread.save(() => {
-      res.send('Saved');
+        thread.save(() => {
+          res.send('Saved');
+        });
+      }
     });
   });
 };
