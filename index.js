@@ -16,7 +16,7 @@ io.set('origins', '*:*');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('serverpublic'));
 app.use(cookieParser());
 app.use(session({ secret: 'test' }));
 app.use(passport.initialize());
