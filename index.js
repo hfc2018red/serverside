@@ -17,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('serverpublic'));
+app.use(express.static('build'));
 app.use(cookieParser());
 app.use(session({ secret: 'test' }));
 app.use(passport.initialize());
@@ -30,10 +31,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-app.get('/', (req, res) => {
-  res.send('home');
-});
 
 require('./routes')(app, io);
 require('./auth')(app);
