@@ -4,7 +4,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
-const = require('cors');
+const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 
