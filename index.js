@@ -18,8 +18,7 @@ const proxyOptions = {
 const port = process.env.PORT || 3000;
 
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
+const io = require('socket.io')
 io.set('origins', '*:*');
 
 app.use(cors({ credentials: false }));
@@ -57,4 +56,5 @@ db.on('open', () => {
   app.listen(port, () => {
     console.log(`Listening on ${port}`);
   });
+  io.listen(app);
 });
