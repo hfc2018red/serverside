@@ -22,7 +22,7 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 io.set('origins', '*:*');
 
-app.use(cors());
+app.use(cors({ credentials: false }));
 app.use('/admin', proxy(proxyOptions));
 app.use('/static', proxy(proxyOptions));
 app.use(express.json());
