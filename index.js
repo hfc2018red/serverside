@@ -16,7 +16,7 @@ const db = mongoose.connection;
 require('./routes')(app);
 
 db.on('error', () => {
-  console.error('Cannot connect to db');
+  console.error(`Cannot connect to db ${process.env.MONGODB_URI}`);
 });
 
 db.on('open', () => {
