@@ -22,16 +22,6 @@ module.exports = (app, io) => {
     });
   });
 
-  app.get('/user', (req, res) => {
-    if (!req.user) {
-      req.redirect('/login.html');
-    }
-    res.json({
-      username: req.user.username,
-      email: req.user.email
-    });
-  });
-
   app.post('/message', (req, res) => {
     Thread.findOne({
       uuid: req.body.threadId
@@ -45,7 +35,7 @@ module.exports = (app, io) => {
         }
         thread.messages.push({
           body: req.body.body,
-          creator: req.user ? req.user._id : undefined
+          creator: req.uuid || undefined
         });
 
         thread.save((err, thread) => {
