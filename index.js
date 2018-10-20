@@ -19,7 +19,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io').listen(server);
 io.set('origins', '*:*');
 
 app.use(cors());
