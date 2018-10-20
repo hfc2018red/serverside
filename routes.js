@@ -35,7 +35,7 @@ module.exports = (app, passport) => {
         }
         thread.messages.push({
           body: req.body.body,
-          creator: req.user._id
+          creator: req.user ? req.user._id : undefined
         });
 
         thread.save(() => {
