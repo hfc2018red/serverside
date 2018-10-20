@@ -1,7 +1,7 @@
 const Thread = require('./models/Thread');
 const uuidv4 = require('uuid/v4');
 
-module.exports = (app, passport) => {
+module.exports = (app, io) => {
   app.get('/threads', (req, res) => {
     Thread.find().lean().exec((err, threads) => {
       if (!err) {
@@ -41,6 +41,7 @@ module.exports = (app, passport) => {
         thread.save((err, thread) => {
           if (!err) {
             res.json(thread);
+            io.emit('message', 'new');
           } else {
             res.json({ messages: [] });
           }
