@@ -39,7 +39,7 @@ module.exports = (app, passport) => {
         });
 
         thread.save(() => {
-          res.send('Saved');
+          res.json(thread.toArray());
         });
       }
     });
