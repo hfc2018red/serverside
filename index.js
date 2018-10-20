@@ -20,7 +20,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-io.set('origins', '*:*');
+io.set('origins', 'localhost:3000');
 
 app.use(cors());
 app.use('/admin', proxy(proxyOptions));
