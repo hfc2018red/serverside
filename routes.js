@@ -22,6 +22,16 @@ module.exports = (app, io) => {
     });
   });
 
+  app.get('/user', (req, res) => {
+    if (!req.user) {
+      req.redirect('/login.html');
+    }
+    res.json({
+      username: req.user.username,
+      email: req.user.email
+    });
+  });
+
   app.post('/message', (req, res) => {
     Thread.findOne({
       uuid: req.body.threadId

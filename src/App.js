@@ -5,17 +5,31 @@ import Nav from './components/Nav';
 import Response from './components/Response';
 import FooterSection from './components/FooterSection';
 import IncomingQuestions from './components/IncomingQuestions';
+import openSocket from 'socket.io-client';
+const socket = openSocket('https://hfc2018red.herokuapp.com');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      threads: []
+      threads: [],
+      user: {}
     };
+
+    socket.on('message', msg => {
+      window.fetch('/threads')
+        .then(res => {
+          return res.json();
+        }).then(json => {
+          this.setState(Object.assign({}, this.state, {
+            threads: json
+          }));
+        })
+    });
   }
   
   componentDidMount() {
-    window.fetch('https://hfc2018red.herokuapp.com/threads')
+    window.fetch('/threads')
       .then(res => {
         return res.json();
       }).then(json => {
@@ -23,6 +37,14 @@ class App extends Component {
           threads: json
         }));
       })
+    window.fetch('/user')
+      .then(res => {
+        return res.json();
+      }).then(json => {
+        this.setState(Object.assign({}, this.state, {
+          user: json
+        }));
+      });
   }
   
   render() {
@@ -32,7 +54,7 @@ class App extends Component {
         <Nav />
         <div style={styles.main}>
           <BrowserRouter>
-            <Route render={()=><IncomingQuestions threads={this.state.threads}/> }/>
+            <Route render={()=><IncomingQuestions threads={this.state.threads} user={this.state.user} /> }/>
           </BrowserRouter>
           <Response />
         </div>

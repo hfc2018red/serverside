@@ -6,6 +6,7 @@ function IncomingQuestions(props) {
   return(
     <div style={styles.main}>
       <h1>Question Queue:</h1>
+      <h3>{props.user.username}</h3>
       {props.threads.map(thread => {
         return thread.messages.map(message => {
           return(
