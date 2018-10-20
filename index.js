@@ -18,9 +18,11 @@ const proxyOptions = {
 const port = process.env.PORT || 3000;
 
 const app = express();
-const io = require('socket.io')
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+io.set('origins', '*:*');
 
-app.use(cors({ credentials: false }));
+app.use(cors());
 app.use('/admin', proxy(proxyOptions));
 app.use('/static', proxy(proxyOptions));
 app.use(express.json());
@@ -52,8 +54,7 @@ db.on('error', () => {
 });
 
 db.on('open', () => {
-  app.listen(port, () => {
+  server.listen(port, () => {
     console.log(`Listening on ${port}`);
   });
-  io.listen(app).set('origins', '*:*');
 });
