@@ -14,10 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 
-//const User = require('./models/User');
-
 require('./routes')(app, io)
-require('./auth')(app);
 
 app.use(express.static('serverpublic'));
 app.use(express.static('build'));
